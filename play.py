@@ -1,8 +1,14 @@
+#!/usr/bin/python
 
 import RPi.GPIO as GPIO
 import time
+from datetime import datetime
 import signal
 import sys
+import os
+import io
+import picamera
+from PIL import Image
 
 def prepare():
     GPIO.setwarnings(False)
@@ -19,13 +25,13 @@ def cleanup():
 def go(x, y):
     print x, y
     sleep_time = 0.75
-    if x == 1:
+    if x == -1:
         GPIO.output(19, 1)
         GPIO.output(24, 1)
         time.sleep(sleep_time)
         GPIO.output(19, 0)
         GPIO.output(24, 0)
-    if x == -1:
+    if x == 1:
         GPIO.output(21, 1)
         GPIO.output(26, 1)
         time.sleep(sleep_time)
@@ -44,6 +50,25 @@ def go(x, y):
         GPIO.output(21, 0)
         GPIO.output(24, 0)
 
+def make_photo():
+    my_stream = io.BytesIO()
+    with picamera.PiCamera() as camera:
+        camera.resolution = (1024, 768)
+        camera.start_preview()
+        time.sleep(2) # Camera warm-up time
+        out_dir = '/home/pi/public_html/img/'
+        atime = str(datetime.now())
+        atime = atime.replace(' ', '_')
+        outfile = os.path.join(out_dir, atime + '.jpg')
+        #acmd = 'raspistill -w 300 -h 200 -o ' + outfile
+        #print acmd
+        #os.system(acmd)
+        camera.capture(outfile)
+        camera.capture(my_stream, format='jpeg')
+
+    my_stream.seek(0)
+    im = Image.open(my_stream)
+    print im.format, im.size, im.mode
 
 def run_program():
     prepare()
@@ -59,6 +84,8 @@ def run_program():
             go(0, -1)
         if s is 'd':
             go(0, 1)
+        if s is 'q':
+            make_photo()
     cleanup()
 
 
