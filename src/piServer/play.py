@@ -19,11 +19,11 @@ def prepare():
     GPIO.setup(26, GPIO.OUT) #Right side backward
 
 def cleanup():
-    print 'Cleanup'
+    print('Cleanup')
     GPIO.cleanup()
 
 def go(x, y):
-    print x, y
+    print(x, y)
     sleep_time = 0.75
     if x == -1:
         GPIO.output(19, 1)
@@ -68,7 +68,7 @@ def make_photo():
 
     my_stream.seek(0)
     im = Image.open(my_stream)
-    print im.format, im.size, im.mode
+    print(im.format, im.size, im.mode)
 
 def run_program():
     prepare()

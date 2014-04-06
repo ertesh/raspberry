@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{82306320-d9c5-47fb-ab4d-e37e81145214}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>src\piClient\audio.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <InterpreterId>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</InterpreterId>
+    <InterpreterVersion>3.4</InterpreterVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <InterpreterReference Include="{9a7a9026-48c1-4688-9d5d-e5699d47d074}\3.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\" />
+    <Folder Include="src\piClient\" />
+    <Folder Include="src\piClient\__pycache__\" />
+    <Folder Include="src\piCommon\" />
+    <Folder Include="src\piServer\" />
+    <Folder Include="src\piServer\__pycache__\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\piClient\__pycache__\piClient.cpython-34.pyc" />
+    <Content Include="src\piClient\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="src\piServer\__pycache__\piServer.cpython-34.pyc" />
+    <Content Include="src\piServer\__pycache__\__init__.cpython-34.pyc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src\main.py" />
+    <Compile Include="src\piClient\listen.py" />
+    <Compile Include="src\piClient\audio.py" />
+    <Compile Include="src\piClient\piClient.py" />
+    <Compile Include="src\piClient\__init__.py" />
+    <Compile Include="src\piCommon\Types.py" />
+    <Compile Include="src\piCommon\__init__.py" />
+    <Compile Include="src\piServer\piServer.py" />
+    <Compile Include="src\piServer\play.py" />
+    <Compile Include="src\piServer\__init__.py" />
+    <Compile Include="src\test1.py" />
+    <Compile Include="src\__init__.py" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+</Project>
